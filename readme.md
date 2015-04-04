@@ -1,4 +1,4 @@
-## A diagnostic tool to help compare where GBIF and VertNet counts differ
+## A diagnostic tool to help calculate VertNet participant open data issues
 
 To build: ```npm install```
 
