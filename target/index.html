@@ -34,7 +34,7 @@
               <td>{{dataset.github_orgname}}</td>
               <td>{{dataset.github_reponame}}</td>
               <td><a href="https://github.com/{{dataset.github_orgname}}/{{dataset.github_reponame}}/issues?utf8=✓&q=is%3Aissue+is%3Aopen+-label%3Areport" target="_blank">Open Issues</a></td>
-              <td>{{dataset.total_count}}</td>
+              <td>{{dataset.[:total_count]}}</td>
               <td ng-class="{'success':dataset.total_count==dataset.total_count, 'danger':dataset.count!=dataset.total_count }">{{dataset.total_count}}</td>
             </tr>
           </tbody>
