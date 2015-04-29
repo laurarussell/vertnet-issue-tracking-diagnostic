@@ -61,8 +61,8 @@ nodes.controller('DatasetController', ['$http', function($http) {
   var self = this;
   
    var cdbAPI = "http://vertnet.cartodb.com/api/v2/sql?q=" +
-	   "SELECT icode,orgname,github_orgname,github_reponame,lastindexed,url,ipt" +
-	   "FROM resource " +
+	   "SELECT icode,orgname,github_orgname,github_reponame,lastindexed,url,ipt " +
+	   "FROM resource_staging " +
 	   "WHERE ipt=true AND networks like '%25VertNet%25' " + // encode % as %25
 	   "ORDER BY github_orgname,github_reponame";
 
