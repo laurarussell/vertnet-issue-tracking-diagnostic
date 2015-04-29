@@ -78,7 +78,7 @@ nodes.controller('DatasetController', ['$http', function($http) {
 
       // load each GitHub count
       angular.forEach(self.datasets, function(dataset) {
-        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:closed+-label:report").success(function (data) {
+        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:open+-label:report").success(function (data) {
           dataset.total_count = data;
         });
       });
