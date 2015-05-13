@@ -66,7 +66,7 @@ nodes.controller('DatasetController', ['$http', function($http) {
 	   "WHERE ipt=true AND networks like '%25VertNet%25' AND icode='KU' " + // encode % as %25
 	   "ORDER BY github_orgname,github_reponame";
 
-  var githubAPI ="https://api.github.com/search/issues?q=repo:";
+  var githubAPI ="https://api.github.com/";
 
   self.datasets = [];
 
@@ -78,11 +78,14 @@ nodes.controller('DatasetController', ['$http', function($http) {
 
       // load each GitHub count
       angular.forEach(self.datasets, function(dataset) {
-        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:open+-label:report+-author:VertNetInfo").success(function (data) {
+        $http.get(githubAPI + "search/issues?q=repo:" + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:open+-label:report+-author:VertNetInfo").success(function (data) {
           dataset.open_count = data.total_count;
 		})
-        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:closed+-label:report+-author:VertNetInfo").success(function (data) {
+        $http.get(githubAPI + "search/issues?q=repo:" + dataset.github_orgname + "/"+ dataset.github_reponame +"+is:issue+is:closed+-label:report+-author:VertNetInfo").success(function (data) {
           dataset.closed_count = data.total_count;
+		})
+		$http.get(githubAPI + "repos/" + dataset.github_orgname + "/"+ dataset.github_reponame + "/subscribers").success(function (data) {
+          dataset.subscribers = data.login;
 		});
       });
     });
