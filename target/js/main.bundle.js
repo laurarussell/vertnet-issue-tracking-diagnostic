@@ -78,10 +78,10 @@ nodes.controller('DatasetController', ['$http', function($http) {
 
       // load each GitHub count
       angular.forEach(self.datasets, function(dataset) {
-        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:open+-label:report").success(function (data) {
+        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:open+-label:report+-author:VertNetInfo").success(function (data) {
           dataset.open_count = data.total_count;
 		})
-        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:closed+-label:report").success(function (data) {
+        $http.get(githubAPI + dataset.github_orgname + "/"+ dataset.github_reponame + "+is:issue+is:closed+-label:report+-author:VertNetInfo").success(function (data) {
           dataset.closed_count = data.total_count;
 		});
       });
