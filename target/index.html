@@ -26,16 +26,16 @@
             <th>github_orgname</th>
             <th>github_reponame</th>
             <th>Issues URL</th>
-            <th>Open Issue Count</th>
             <th>Closed Issue Count</th>
+            <th>Open Issue Count</th>
           </thead>
           <tbody>
             <tr ng-repeat="dataset in datasetCtlr.datasets">
               <td>{{dataset.github_orgname}}</td>
               <td>{{dataset.github_reponame}}</td>
               <td><a href="https://github.com/{{dataset.github_orgname}}/{{dataset.github_reponame}}/issues?utf8=✓&q=is%3Aissue+is%3Aopen+-label%3Areport" target="_blank">Open Issues</a></td>
-              <td>{{dataset.total_count}}</td>
-              <td ng-class="{'success':dataset.total_count==dataset.total_count, 'danger':dataset.count!=dataset.total_count }">{{dataset.total_count}}</td>
+              <td>{{dataset.closed_count}}</td>
+              <td ng-class="{'success':dataset.open_count==0, 'danger':dataset.open_count!=0 }">{{dataset.open_count}}</td>
             </tr>
           </tbody>
         </table>
