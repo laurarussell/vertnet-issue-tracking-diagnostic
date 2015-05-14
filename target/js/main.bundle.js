@@ -85,7 +85,7 @@ nodes.controller('DatasetController', ['$http', function($http) {
           dataset.closed_count = data.total_count;
 		})
 		$http.get(githubAPI + "repos/" + dataset.github_orgname + "/"+ dataset.github_reponame + "/subscribers").success(function (data) {
-          dataset.login = data.login;
+          dataset.login = data;
 		});
       });
     });
