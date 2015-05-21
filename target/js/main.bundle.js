@@ -55,6 +55,8 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	
+var app = angular.module('app', []);   
+
 app.controller('AuthCtrl', function($scope) {
 
 $scope.username = '';
