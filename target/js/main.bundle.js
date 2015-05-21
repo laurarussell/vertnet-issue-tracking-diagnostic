@@ -55,6 +55,37 @@
 	__webpack_require__(2);
 	__webpack_require__(3);
 	
+app.controller('AuthCtrl', function($scope) {
+
+$scope.username = '';
+$scope.password = '';
+$scope.success = false;
+$scope.auth = function() {
+  console.log($scope.username);
+  console.log($scope.password);
+  $scope.github = new Github({
+    username: $scope.username,
+    password: $scope.password,
+    auth: "basic"
+  });
+
+  $scope.user = $scope.github.getUser();
+  $scope.user.repos(function(err, repos) {
+    $scope.err = err;
+    $scope.repos = repos;
+    if($scope.err != null)
+    {
+      console.log($scope.err);
+    }else
+    {
+      console.log($scope.repos);
+      $scope.success = true;
+    }
+  });
+
+}
+});	
+	
 var nodes = angular.module('dataset', []);
 
 nodes.controller('DatasetController', ['$http', function($http) {
