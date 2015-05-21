@@ -54,62 +54,6 @@
 	__webpack_require__(4);
 	__webpack_require__(2);
 	__webpack_require__(3);
-
-angular.module('github.activity', ['github.activity.tpls'])
-.factory('GithubActivityService', function($q,$rootScope,$resource) {
-    var _githubActivity = {};
-    _githubActivity.events = function(opts){
-        return $resource('https://api.github.com/users/:user/events', {user: opts.user}, {
-            get: {method:'JSONP',params:opts.params}
-        });
-    }
-    return _githubActivity;
-})	
-	
-GithubActivityService.events({
-  user:'laurarussell',
-  params:{
-
-    //Github API supports CORS as well. (http://developer.github.com/v3/#cross-origin-resource-sharing)
-    callback:'JSON_CALLBACK', 
-
-    /*
-    Github API rate limits to (60 requests per hour) for anonymous requests. (http://developer.github.com/v3/#cross-origin-resource-sharing)
-
-    If you need more (5000 requests per hour) you can generate a "scope-less" (access_token) for your app and is safe for client side code:
-
-    1. First register a new app by following:
-        --> https://github.com/settings/applications
-        --> "Developer Applications"
-        --> "Register new application"
-    2. Register a "scope-less" (access_token) via cURL call using that <client_id> and <client_secret> you just made.
-        # curl -X PUT -H "application/json" -d
-          '{"client_secret":"<client_secret>","scopes":[],"note":"no scope public access"}'
-          https://api.github.com/authorizations/clients/<client_id>
-          -u <username>
-    3. Your response shoud look something like this and generate a scope-less (token):
-        {
-          "id": 1234567,
-          "url": "https://api.github.com/authorizations/1234567",
-          "app": {
-            "name": "Angular Github Activity",
-            "url": "http://gigablox.github.io/angular-github-activity/",
-            "client_id": "123456712345671234567"
-          },
-          "token": "76841d7b319dc8bb2c731365d38b74b25ab00126", //<-- This is what you want
-          "note": "no scope public access",
-          "note_url": null,
-          "created_at": "2013-10-06T21:06:18Z",
-          "updated_at": "2013-10-06T21:06:18Z",
-          "scopes": []
-        }
-    */
-
-    access_token:'3000b6b2b2881037199cae32b868cdeef1f8ca27' //<-- Put that bad boy right here.
-  }
-}).get().$promise.then(function(events){
-  $scope.events = events.data;
-});
 	
 var nodes = angular.module('dataset', []);
 
