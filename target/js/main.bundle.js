@@ -54,6 +54,17 @@
 	__webpack_require__(4);
 	__webpack_require__(2);
 	__webpack_require__(3);
+
+angular.module('github.activity', ['github.activity.tpls'])
+.factory('GithubActivityService', function($q,$rootScope,$resource) {
+    var _githubActivity = {};
+    _githubActivity.events = function(opts){
+        return $resource('https://api.github.com/users/:user/events', {user: opts.user}, {
+            get: {method:'JSONP',params:opts.params}
+        });
+    }
+    return _githubActivity;
+})	
 	
 GithubActivityService.events({
   user:'laurarussell',
